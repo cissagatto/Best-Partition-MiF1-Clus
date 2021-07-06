@@ -68,7 +68,7 @@ bestPart <- function(ds, dataset_name, number_folds, folderResults){
     nome = paste("Partition-", i, "-Evaluated-Validation.csv", sep="")
     #print(nome)
     arquivo = data.frame(read.csv(nome))
-    result = arquivo[14,]
+    result = arquivo[13,]
     partition = i
     macroF1 = cbind(partition, result)
     allMacroF1Part = rbind(allMacroF1Part, macroF1)
