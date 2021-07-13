@@ -36,13 +36,13 @@ Confirms if the folder UTILS contains the following files: Clus.jar, R_csv_2_arf
 ### Step-5
 The results stored in the folder _OUTPUT_ in the codes _Generate-Partition-Kohonen, or Generate-Partition-Random1, or Generate-Partition-Random2 or Generate-Partition-Jaccard_ will be used here. Copy the folder with the name of the dataset in the folder _PARTITIONS_.
 
-<img src="https://github.com/cissagatto/Best-Partition-MicroF1/blob/main/images/Resultados-BPMiF1.png" width="300">
+<img src="https://github.com/cissagatto/Best-Partition-MicroF1/blob/main/images/Partitions-BPMiF1.png" width="300">
 
 NOTE: Please, pay attention to the *datasets.csv* names and the names in the CSV file. They must be the same, on the contrary, an error may occur.
 
 ## Folder Strucutre
 
-<img src="https://github.com/cissagatto/Best-Partition-MicroF1/blob/main/images/Partitions-BPMiF1.png" width="300">
+<img src="https://github.com/cissagatto/Best-Partition-MicroF1/blob/main/images/Folder-Structure-BPMiF1.png" width="300">
 
 
 ## Software Requirements
@@ -71,7 +71,7 @@ The results are store in the folder _RESULTS_. The results stored in the folder 
 
 <img src="https://github.com/cissagatto/Best-Partition-MicroF1/blob/main/images/OutPut-BPMiF1.png" width="300">
 
-<img src="https://github.com/cissagatto/Best-Partition-MacroF1/blob/main/images/Resultados-BPMaF1.png" width="300">
+<img src="https://github.com/cissagatto/Best-Partition-MicroF1/blob/main/images/Resultados-BPMiF1.png" width="300">
 
 
 ## RUN
