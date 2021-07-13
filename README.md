@@ -1,5 +1,5 @@
-# Best Partition Macro-F1
-This code is part of my PhD research at PPG-CC/DC/UFSCar. The aim is select the best partition for multilabel classification using the Macro-F1 metric.
+# Best Partition Micro-F1
+This code is part of my PhD research at PPG-CC/DC/UFSCar. The aim is select the best partition for multilabel classification using the Micro-F1 metric.
 
 <img src="" width="100">
 
@@ -21,7 +21,7 @@ This code is executed in X-fold cross-validation (mandatory!). First, you have t
 <img src="https://github.com/cissagatto/Best-Partition-MacroF1/blob/main/images/10-Folds-Cross-Validation.png" width="300">
 
 ### Step-2
-Place a copy of this code in _"C:/Users/[username]/Best-Partition-MacroF1"_ or _"/home/[username]/Best-Partition-MacroF1_. Our files are configured to obtain the paths of the folders from the root project. You can change this in the code if you want.
+Place a copy of this code in _"C:/Users/[username]/Best-Partition-MicroF1"_ or _"/home/[username]/Best-Partition-MicroF1_. Our files are configured to obtain the paths of the folders from the root project. You can change this in the code if you want.
 
 ### Step-3
 A file called *datasets.csv* must be in the root project folder. This file is used to read information about the datasets and they are used in the code. All 74 datasets available in cometa (https://cometa.ujaen.es/) are in this file. If you want to use another dataset, please, add the following information about the dataset in the file:
@@ -75,10 +75,10 @@ The results are store in the folder _RESULTS_. The results stored in the folder 
 
 
 ## RUN
-To run the code, open the terminal, enter */home/[username]/Best-Partition-MacroF1/scripts/* folder, and type:
+To run the code, open the terminal, enter */home/[username]/Best-Partition-MicroF1/scripts/* folder, and type:
 
 ```
-Rscript macrof1.R [number_dataset] [number_cores] [number_folds] [name_folder_results]
+Rscript microf1.R [number_dataset] [number_cores] [number_folds] [name_folder_results]
 ```
 
 Where:
@@ -94,7 +94,7 @@ _name_folders_results is the name of the folder to save the results
 All parameters are mandatory. Example:
 
 ```
-Rscript macrof1.R 17 5 10 /dev/shm/results
+Rscript microf1.R 17 5 10 /dev/shm/results
 ```
 
 This will execute the code for the dataset number 17 in the _dataset.csv_, with 5 cores, 10 folds and the process will be store in the _/dev/shm/results/_. This code automatically makes a copy of the */dev/shm/results/ in the folder *Results* - which is in the root of the project. In this way, you can run the code using a temporary folder, like *scratch* and *shm*, to speed up the execution.
