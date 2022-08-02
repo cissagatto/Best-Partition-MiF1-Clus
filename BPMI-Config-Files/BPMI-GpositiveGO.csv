@@ -1,0 +1,8 @@
+Config, Value
+Dataset_Path, ~/Best-Partition-MiF1-Clus/Datasets
+Temporary_Path, /dev/shm/BPMI-GpositiveGO
+Partitions_Path, ~/Best-Partition-MiF1-Clus/Partitions
+dataset_name, GpositiveGO
+number_dataset, 42
+number_folds, 10
+number_cores, 1
