@@ -13,7 +13,8 @@ This code source is composed of the project R to be used in RStudio IDE and also
 3. validation.R
 4. bestPartitions.R
 5. run.R
-6. mIcrof1.R
+6. microf1.R
+7. bpmi_config_files.R
 
 
 ## Preparing your experiment
@@ -90,6 +91,7 @@ To run this code you will need a configuration file saved in *csv* format and wi
 | Dataset_Path    | Absolute path to the folder where the dataset's tar.gz is stored          |
 | Temporary_Path  | Absolute path to the folder where temporary processing will be performed* |
 | Partitions_Path | Absolute path to the folder where partitions are store                    |
+| similarity      | Choose which one to run: jaccard, rogers, random1 and random2             |
 | dataset_name    | Dataset name according to *datasets-original.csv* file                    |
 | number_dataset  | Dataset number according to *datasets-original.csv* file                  |
 | number_folds    | Number of folds used in cross validation                                  |

@@ -80,7 +80,7 @@ args <- commandArgs(TRUE)
 # from csv file                                                               #
 ###############################################################################
 
-#config_file = "/home/cissa/Best-Partition-MiF1-Clus/BPMI-Config-Files/BPMI-GpositiveGO.csv"
+#config_file = "~/Best-Partition-MiF1-Clus/BPMI-Config-Files/jaccard/j-bpmi-GpositiveGO.csv"
 
 config_file <- args[1]
 
@@ -113,12 +113,15 @@ folderResults = str_remove(folderResults, pattern = " ")
 Partitions_Path = toString(config$Value[3])
 Partitions_Path = str_remove(Partitions_Path, pattern = " ")
 
-dataset_name = toString(config$Value[4])
+similarity = toString(config$Value[4])
+similarity = str_remove(similarity, pattern = " ")
+
+dataset_name = toString(config$Value[5])
 dataset_name = str_remove(dataset_name, pattern = " ")
 
-number_dataset = as.numeric(config$Value[5])
-number_folds = as.numeric(config$Value[6])
-number_cores = as.numeric(config$Value[7])
+number_dataset = as.numeric(config$Value[6])
+number_folds = as.numeric(config$Value[7])
+number_cores = as.numeric(config$Value[8])
 
 ds = datasets[number_dataset,]
 
@@ -128,6 +131,7 @@ print(ds)
 cat("\n# DATASET PATH: \t", dataset_path)
 cat("\n# TEMPORARY PATH: \t", folderResults)
 cat("\n# PARTITIONS PATH: \t", Partitions_Path)
+cat("\n# SIMILARITY:  \t", similarity)
 cat("\n# DATASET NAME:  \t", dataset_name)
 cat("\n# NUMBER DATASET: \t", number_dataset)
 cat("\n# NUMBER X-FOLDS CROSS-VALIDATION: \t", number_folds)
@@ -288,7 +292,8 @@ cat("\n####################################################################")
 cat("\n# Compress folders and files                                       #")
 cat("\n####################################################################\n\n")
 str_a <- paste("tar -zcf ", diretorios$folderResults, "/", dataset_name,
-               "-results-bpmi.tar.gz ",  diretorios$folderResults, sep = "")
+               "-", similarity, "-results-bpmi.tar.gz ",  
+               diretorios$folderResults, sep = "")
 print(system(str_a))
 
 
@@ -298,40 +303,40 @@ cat("\n####################################################################\n\n"
 folder = paste(FolderRoot, "/Reports", sep="")
 if(dir.exists(folder)==FALSE){dir.create(folder)}
 str_b <- paste("cp -r ", diretorios$folderResults, "/", dataset_name,
-               "-results-bpmi.tar.gz ", folder, sep = "")
+               "-", similarity, "-results-bpmi.tar.gz ", folder, sep = "")
 print(system(str_b))
 
 
-# cat("\n####################################################################")
-# cat("\n# COPY OUTPUT TO GOOGLE DRIVE                                      #")
-# cat("\n####################################################################\n\n")
-# origem = diretorios$folderOutputDataset
-# destino = paste("nuvem:Best-Partitions/Micro-F1/", dataset_name, 
-#                 "/Partitions/", sep="")
-# comando1 = paste("rclone -P copy ", origem, " ", destino, sep="")
-# cat("\n", comando1, "\n")
-# a = print(system(comando1))
-# a = as.numeric(a)
-# if(a != 0) {
-# stop("Erro RCLONE")
-# quit("yes")
-# }
+cat("\n####################################################################")
+cat("\n# COPY OUTPUT TO GOOGLE DRIVE                                      #")
+cat("\n####################################################################\n\n")
+origem = diretorios$folderOutputDataset
+destino = paste("nuvem:Best-Partitions/", similarity,
+               "/Micro-F1/", dataset_name, "/Partitions/", sep="")
+comando1 = paste("rclone -P copy ", origem, " ", destino, sep="")
+cat("\n", comando1, "\n")
+a = print(system(comando1))
+a = as.numeric(a)
+if(a != 0) {
+stop("Erro RCLONE")
+quit("yes")
+}
 
 
-# cat("\n####################################################################")
-# cat("\n# COPY VALIDATION TO GOOGLE DRIVE                                  #")
-# cat("\n####################################################################\n\n")
-# origem = diretorios$folderResultsDataset
-# destino = paste("nuvem:Best-Partitions/Micro-F1/", 
-#                 dataset_name, "/Validation/", sep="")
-# comando1 = paste("rclone -P copy ", origem, " ", destino, sep="")
-# cat("\n", comando1, "\n")
-# a = print(system(comando1))
-# a = as.numeric(a)
-# if(a != 0) {
-#   stop("Erro RCLONE")
-#   quit("yes")
-# }
+cat("\n####################################################################")
+cat("\n# COPY VALIDATION TO GOOGLE DRIVE                                  #")
+cat("\n####################################################################\n\n")
+origem = diretorios$folderResultsDataset
+destino = paste("nuvem:Best-Partitions/", similarity,
+               "/Micro-F1/", dataset_name, "/Validation/", sep="")
+comando1 = paste("rclone -P copy ", origem, " ", destino, sep="")
+cat("\n", comando1, "\n")
+a = print(system(comando1))
+a = as.numeric(a)
+if(a != 0) {
+  stop("Erro RCLONE")
+  quit("yes")
+}
 
 
 
