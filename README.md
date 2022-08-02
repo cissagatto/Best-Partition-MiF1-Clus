@@ -143,7 +143,7 @@ Rscript microf1.R [absolute_path_to_config_file]
 Example:
 
 ```
-Rscript microf1.R "~/Best-Partition-MiF1-Clus/BPMI-Config-Files/BPMI-GpositiveGO.csv"
+Rscript microf1.R "~/Best-Partition-MiF1-Clus/BPMI-Config-Files/jaccard/BPMI-GpositiveGO.csv"
 ```
 
 ## RESULTS
