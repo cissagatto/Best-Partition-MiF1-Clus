@@ -128,7 +128,7 @@ Important: we used the CLUS classifier in this experiment. This implies generati
 
 
 ## Results
-The results stored in the folder _OUTPUT_ it will be used in the next phase: Best-Partition-Silhoute, Best-Partition-MacroF1 or Best-Partition-MicroF1. The result for a dataset must be put in the folder _PARTITIONS_ in the respective code.
+The results stored in the folder _OUTPUT_ it will be used in the next phase: Best-Partition-Silhoute, Test-Best-Partition-MacroF1, Test-Best-Partition-MicroF1 or Test-Best-Partition-Silhouette. The result for a dataset must be put in the folder _PARTITIONS_ in the respective code.
 
 <img src="" width="300">
 
