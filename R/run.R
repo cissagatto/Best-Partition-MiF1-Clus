@@ -41,6 +41,7 @@ executeBPMI <- function(ds,
                         number_dataset, 
                         number_cores, 
                         number_folds, 
+                        similarity,
                         folderResults){
   
   
@@ -61,7 +62,7 @@ executeBPMI <- function(ds,
   setwd(FolderScripts)
   source("bestPartitions.R")
   
-  diretorios <- directories(dataset_name, folderResults)
+  diretorios <- directories(dataset_name, folderResults, similarity)
   
   if(number_cores == 0){
     
@@ -110,6 +111,7 @@ executeBPMI <- function(ds,
                                            number_dataset, 
                                            number_cores, 
                                            number_folds, 
+                                           similarity,
                                            folderResults)) 
 
   
@@ -122,6 +124,7 @@ executeBPMI <- function(ds,
                                          number_dataset, 
                                          number_cores, 
                                          number_folds, 
+                                         similarity,
                                          folderResults)) 
 
   
@@ -134,6 +137,7 @@ executeBPMI <- function(ds,
                                       number_dataset, 
                                       number_cores, 
                                       number_folds, 
+                                      similarity,
                                       folderResults)) 
 
   

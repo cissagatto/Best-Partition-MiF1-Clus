@@ -48,13 +48,14 @@ validatePartitions <- function(ds,
                                number_dataset, 
                                number_cores, 
                                number_folds, 
+                               similarity,
                                folderResults){  
   
   FolderRoot = "~/Best-Partition-MiF1-Clus"
   FolderScripts = "~/Best-Partition-MiF1-Clus/R"
   setwd(FolderScripts)
   source("utils.R")
-  diretorios = directories(dataset_name, folderResults)
+  diretorios = directories(dataset_name, folderResults, similarity)
   
   #cat("\nGet the Folder Partition")
   FolderPartition = paste(diretorios$folderResultsDataset,
@@ -80,7 +81,7 @@ validatePartitions <- function(ds,
     FolderScripts = "~/Best-Partition-MiF1-Clus/R"
     setwd(FolderScripts)
     source("utils.R")
-    diretorios = directories(dataset_name, folderResults)
+    diretorios = directories(dataset_name, folderResults, similarity)
     
     setwd(FolderScripts)
     source("libraries.R")
@@ -468,11 +469,12 @@ juntaResultados <- function(ds,
                             number_dataset, 
                             number_cores, 
                             number_folds, 
+                            similarity,
                             folderResults){
   
   retorno = list()
   
-  diretorios = directories(dataset_name, folderResults)
+  diretorios = directories(dataset_name, folderResults, similarity)
   
   FolderPartition = paste(diretorios$folderResultsDataset, "/Partition-", id_part, sep="")
   
@@ -574,11 +576,12 @@ avalia <- function(ds,
                    number_dataset, 
                    number_cores, 
                    number_folds, 
+                   similarity,
                    folderResults){
   
   retorno = list()
   
-  diretorios = directories(dataset_name, folderResults)
+  diretorios = directories(dataset_name, folderResults, similarity)
   
   FolderPartition = paste(diretorios$folderResultsDataset,
                           "/Partition-", id_part, sep="")
@@ -669,11 +672,12 @@ juntaAvaliacoes <- function(ds,
                             number_dataset, 
                             number_cores, 
                             number_folds, 
+                            similarity,
                             folderResults){  
   
   retorno = list()
   
-  diretorios = directories(dataset_name, folderResults)
+  diretorios = directories(dataset_name, folderResults, similarity)
   
   FolderPartition = paste(diretorios$folderResultsDataset,
                           "/Partition-", id_part, sep="")
@@ -771,6 +775,7 @@ validate <- function(ds,
                      number_dataset, 
                      number_cores, 
                      number_folds, 
+                     similarity,
                      folderResults){
   
   ##########################################################################
@@ -779,7 +784,7 @@ validate <- function(ds,
   setwd(FolderScripts)
   source("utils.R")
   
-  diretorios = directories(dataset_name, folderResults)
+  diretorios = directories(dataset_name, folderResults, similarity)
   
   # from partition 2 to last partition (n)
   count = 2
@@ -788,7 +793,7 @@ validate <- function(ds,
     
     cat("\nPARTITION: ", id_part, "\n")
     
-    diretorios = directories(dataset_name, folderResults)
+    diretorios = directories(dataset_name, folderResults, similarity)
     
     cat("\n\nCreating folder partition")
     FolderPartition = paste(diretorios$folderResultsDataset, 
@@ -807,6 +812,7 @@ validate <- function(ds,
                                                         number_dataset, 
                                                         number_cores, 
                                                         number_folds, 
+                                                        similarity,
                                                         folderResults))
     
     
@@ -820,6 +826,7 @@ validate <- function(ds,
                                                             number_dataset, 
                                                             number_cores, 
                                                             number_folds, 
+                                                            similarity,
                                                             folderResults)) 
     
     
@@ -833,6 +840,7 @@ validate <- function(ds,
                                                number_dataset, 
                                                number_cores, 
                                                number_folds, 
+                                               similarity,
                                                folderResults))
     
     
@@ -846,6 +854,7 @@ validate <- function(ds,
                                                            number_dataset, 
                                                            number_cores, 
                                                            number_folds, 
+                                                           similarity,
                                                            folderResults)) 
     
     

@@ -38,7 +38,7 @@ FolderScripts = "~/Best-Partition-MiF1-Clus/R"
 #   Return:                                                              
 #      All path directories                                              
 #########################################################################
-directories <- function(dataset_name, folderResults){
+directories <- function(dataset_name, folderResults, similarity){
   
   retorno = list()
   
@@ -78,6 +78,41 @@ directories <- function(dataset_name, folderResults){
     dir_folderUtils = dir(folderUtils)
     n_folderUtils = length(dir_folderUtils)
   }
+  
+  
+  #############################################################################
+  #
+  #############################################################################
+  folderReports = paste(FolderRoot, "/Reports", sep="")
+  if(dir.exists(folderReports) == TRUE){
+    setwd(folderReports)
+    dir_folderReports = dir(folderReports)
+    n_folderReports = length(dir_folderReports)
+  } else {
+    dir.create(folderReports)
+    setwd(folderReports)
+    dir_folderReports = dir(folderReports)
+    n_folderReports = length(dir_folderReports)
+  }
+  
+  
+  #############################################################################
+  #
+  #############################################################################
+  folderRS = paste(folderReports, "/", similarity, sep="")
+  if(dir.exists(folderRS) == TRUE){
+    setwd(folderRS)
+    dir_folderRS = dir(folderRS)
+    n_folderRS = length(dir_folderRS)
+  } else {
+    dir.create(folderRS)
+    setwd(folderRS)
+    dir_folderRS = dir(folderRS)
+    n_folderRS = length(dir_folderRS)
+  }
+  
+  
+  
   
   
   #############################################################################
@@ -291,12 +326,27 @@ directories <- function(dataset_name, folderResults){
     n_folderOutput = length(dir_folderOutput)
   }
   
+  
   #############################################################################
-  # OUTPUT DATASET FOLDER:                                                    #
-  # Folder to the specific dataset                                            #
-  # "/home/[user]/Partitions-Kohonen/Output/birds"                            #
+  
   #############################################################################
-  folderOutputDataset = paste(folderOutput, "/", dataset_name, sep="")
+  folderOS = paste(folderOutput, "/", similarity, sep="")
+  if(dir.exists(folderOS) == TRUE){
+    setwd(folderOS)
+    dir_folderOS  = dir(folderOS )
+    n_folderOS = length(dir_folderOS )
+  } else {
+    dir.create(folderOS)
+    setwd(folderOS)
+    dir_folderOS  = dir(folderOS )
+    n_folderOS = length(dir_folderOS )
+  }
+  
+  
+  #############################################################################
+  
+  #############################################################################
+  folderOutputDataset = paste(folderOS, "/", dataset_name, sep="")
   if(dir.exists(folderOutputDataset) == TRUE){
     setwd(folderOutputDataset)
     dir_folderOutputDataset = dir(folderOutputDataset)
@@ -308,9 +358,12 @@ directories <- function(dataset_name, folderResults){
     n_folderOutputDataset = length(dir_folderOutputDataset)
   }
   
+  
   #############################################################################
   # RETURN ALL PATHS                                                          #
   #############################################################################
+  retorno$folderReports = folderReports
+  retorno$folderRS = folderRS
   retorno$folderResults = folderResults
   retorno$folderUtils = folderUtils
   retorno$folderDatasets = folderDatasets
@@ -323,6 +376,7 @@ directories <- function(dataset_name, folderResults){
   retorno$folderCVVL = folderCVVL
   retorno$folderPartitions = folderPartitions
   retorno$folderOutput = folderOutput
+  retorno$folderOS = folderOS
   retorno$folderOutputDataset = folderOutputDataset
   retorno$folderResultsDataset = folderResultsDataset
   
@@ -330,6 +384,8 @@ directories <- function(dataset_name, folderResults){
   #############################################################################
   # RETURN ALL DIRS                                                           #
   #############################################################################
+  retorno$dir_folderReports = dir_folderReports
+  retorno$dir_folderRS = dir_folderRS
   retorno$dir_folderResults = dir_folderResults
   retorno$dir_folderUtils = dir_folderUtils
   retorno$dir_folderDatasets = dir_folderDatasets
@@ -342,6 +398,7 @@ directories <- function(dataset_name, folderResults){
   retorno$dir_folderCVVL = dir_folderCVVL
   retorno$dir_folderPartitions = dir_folderPartitions
   retorno$dir_folderOutput = dir_folderOutput
+  retorno$dir_folderOS = dir_folderOS
   retorno$dir_folderOutputDataset = dir_folderOutputDataset
   retorno$dir_folderResultsDataset = dir_folderResultsDataset
   
@@ -349,6 +406,8 @@ directories <- function(dataset_name, folderResults){
   #############################################################################
   # RETURN ALL LENGHTS                                                        #
   #############################################################################
+  retorno$n_folderReports = n_folderReports
+  retorno$n_folderRS = n_folderRS
   retorno$n_folderResults = n_folderResults
   retorno$n_folderUtils = n_folderUtils
   retorno$n_folderDatasets = n_folderDatasets
@@ -361,6 +420,7 @@ directories <- function(dataset_name, folderResults){
   retorno$n_folderCVVL = n_folderCVVL
   retorno$n_folderPartitions = n_folderPartitions
   retorno$n_folderOutput = n_folderOutput
+  retorno$n_folderOS = n_folderOS
   retorno$n_folderOutputDataset = n_folderOutputDataset
   retorno$n_folderResultsDataset = n_folderResultsDataset
   
@@ -391,7 +451,7 @@ labelSpace <- function(ds, dataset_name, number_folds, folderResults){
   classes = list()
   
   # get the directories
-  diretorios = directories(dataset_name, folderResults)
+  diretorios = directories(dataset_name, folderResults, similarity)
   
   # from the first FOLD to the last
   k = 1

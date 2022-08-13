@@ -152,7 +152,7 @@ if (dir.exists(folderResults) == FALSE) {dir.create(folderResults)}
 cat("\n######################")
 cat("\n# Get directories    #")
 cat("\n######################\n")
-diretorios <- directories(dataset_name, folderResults)
+diretorios <- directories(dataset_name, folderResults, similarity)
 print(diretorios)
 cat("\n\n")
 
@@ -274,7 +274,8 @@ timeFinal <- system.time(results <- executeBPMI(ds,
                                                dataset_name,
                                                number_dataset, 
                                                number_cores, 
-                                               number_folds, 
+                                               number_folds,
+                                               similarity,
                                                folderResults))
 
 print(timeFinal)
@@ -300,43 +301,42 @@ print(system(str_a))
 cat("\n####################################################################")
 cat("\n# Copy to root folder                                              #")
 cat("\n####################################################################\n\n")
-folder = paste(FolderRoot, "/Reports", sep="")
-if(dir.exists(folder)==FALSE){dir.create(folder)}
 str_b <- paste("cp -r ", diretorios$folderResults, "/", dataset_name,
-               "-", similarity, "-results-bpmi.tar.gz ", folder, sep = "")
+               "-", similarity, "-results-bpmi.tar.gz ", 
+               diretorios$folderRS, sep = "")
 print(system(str_b))
 
 
-cat("\n####################################################################")
-cat("\n# COPY OUTPUT TO GOOGLE DRIVE                                      #")
-cat("\n####################################################################\n\n")
-origem = diretorios$folderOutputDataset
-destino = paste("nuvem:Best-Partitions/", similarity,
-               "/Micro-F1/", dataset_name, "/Partitions/", sep="")
-comando1 = paste("rclone -P copy ", origem, " ", destino, sep="")
-cat("\n", comando1, "\n")
-a = print(system(comando1))
-a = as.numeric(a)
-if(a != 0) {
-stop("Erro RCLONE")
-quit("yes")
-}
+# cat("\n####################################################################")
+# cat("\n# COPY OUTPUT TO GOOGLE DRIVE                                      #")
+# cat("\n####################################################################\n\n")
+# origem = diretorios$folderOutputDataset
+# destino = paste("nuvem:Best-Partitions/", similarity,
+#                "/Micro-F1/", dataset_name, "/Partitions/", sep="")
+# comando1 = paste("rclone -P copy ", origem, " ", destino, sep="")
+# cat("\n", comando1, "\n")
+# a = print(system(comando1))
+# a = as.numeric(a)
+# if(a != 0) {
+# stop("Erro RCLONE")
+# quit("yes")
+# }
 
 
-cat("\n####################################################################")
-cat("\n# COPY VALIDATION TO GOOGLE DRIVE                                  #")
-cat("\n####################################################################\n\n")
-origem = diretorios$folderResultsDataset
-destino = paste("nuvem:Best-Partitions/", similarity,
-               "/Micro-F1/", dataset_name, "/Validation/", sep="")
-comando1 = paste("rclone -P copy ", origem, " ", destino, sep="")
-cat("\n", comando1, "\n")
-a = print(system(comando1))
-a = as.numeric(a)
-if(a != 0) {
-  stop("Erro RCLONE")
-  quit("yes")
-}
+# cat("\n####################################################################")
+# cat("\n# COPY VALIDATION TO GOOGLE DRIVE                                  #")
+# cat("\n####################################################################\n\n")
+# origem = diretorios$folderResultsDataset
+# destino = paste("nuvem:Best-Partitions/", similarity,
+#                "/Micro-F1/", dataset_name, "/Validation/", sep="")
+# comando1 = paste("rclone -P copy ", origem, " ", destino, sep="")
+# cat("\n", comando1, "\n")
+# a = print(system(comando1))
+# a = as.numeric(a)
+# if(a != 0) {
+#   stop("Erro RCLONE")
+#   quit("yes")
+# }
 
 
 

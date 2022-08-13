@@ -37,11 +37,12 @@ bestPart <- function(s,
                      number_dataset, 
                      number_cores, 
                      number_folds, 
+                     similarity,
                      folderResults){
   
   retorno = list()
   
-  diretorios = directories(dataset_name, folderResults)
+  diretorios = directories(dataset_name, folderResults, similarity)
   
   partition = c(0)
   measures = c("")
@@ -189,9 +190,10 @@ asd <- function(s,
                 number_dataset, 
                 number_cores, 
                 number_folds, 
+                similarity,
                 folderResults){
   
-  diretorios = directories(dataset_name, folderResults)
+  diretorios = directories(dataset_name, folderResults, similarity)
   
   # function return 
   retorno = list()
@@ -222,7 +224,8 @@ asd <- function(s,
   # saves results in the RESULTS folder
   setwd(diretorios$folderOutputDataset)
   write.csv(sumario, paste(dataset_name,
-                           "-statistic-sumary-best-part.csv", sep=""))
+                           "-statistic-sumary-best-part.csv", 
+                           sep=""))
   
   # function return
   retorno$sumario = sumario
